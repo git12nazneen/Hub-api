@@ -1,9 +1,9 @@
-const loadHub = async (searchText='gpt', isShowAll) =>{
+const loadHub = async (searchText='c', isShowAll) =>{
     const res = await fetch('https://openapi.programming-hero.com/api/ai/tools');
     const data = await res.json()
     // console.log(data.data.tools)
     const hubs = data.data.tools.filter(item=> item.name.toLowerCase().includes(searchText.toLowerCase()));
-    console.log(hubs)
+    // console.log(hubs)
    
     displayHub(hubs, isShowAll)
 }
@@ -32,7 +32,7 @@ const displayHub =(hubs, isShowAll) =>{
    
     // 2 create div
     hubs.forEach(hub =>{
-        console.log(hub)
+        // console.log(hub)
         const hubCard = document.createElement('div');
       
         hubCard.classList = `
@@ -50,7 +50,7 @@ const displayHub =(hubs, isShowAll) =>{
 
           <p>${hub.published_in}</p>
           <div class="card-actions justify-end">
-          <button class="btn  btn-secondary">-></button>
+          <button onClick="singlePhoneDetail('${hub.id}')" class="btn  btn-secondary">-></button>
     </div>
          
         </div>
@@ -59,6 +59,45 @@ const displayHub =(hubs, isShowAll) =>{
     })
     // hide loading spinner
     loadingSpinner(false)
+}
+// single data load data
+const singlePhoneDetail = async(id) =>{
+    console.log(id)
+    const res = await fetch(`https://openapi.programming-hero.com/api/ai/tool/${id}`);
+    const data = await res.json();
+    const hub = data;
+    // console.log(data)
+   singleHubDetail(hub);
+}
+
+const singleHubDetail = (hub) =>{
+    console.log(hub)
+    const hubName = document.getElementById('show-hub-name');
+    hubName.innerText = hub.data.tool_name;
+    const showContainer = document.getElementById('show-hub-detail-contain');
+    showContainer.innerHTML = `
+    <h1>${hub.data.description}</h1>
+    <h1>HUB id: ${hub.data.id}</h1>
+    <h2>Features</h2>
+    <p>${hub.data.features[1].feature_name}</p>
+    <p>${hub.data.features[2].feature_name}</p>
+    <p>${hub.data.features[3].feature_name}</p>
+    <h2>Integration</h2>
+    <p>${hub.data.pricing[0].price}</p>
+    <p>${hub.data.pricing[1].price}</p>
+    <p>${hub.data.pricing[2].price}</p>
+       
+
+ 
+ 
+
+    `
+    const hubImage = document.getElementById('show-img');
+    hubImage.innerHTML=`
+    <img src= "${hub.data.image_link[0]}"></img?
+    `
+    // modal
+    my_modal.showModal();
 }
 
 // handle search button
