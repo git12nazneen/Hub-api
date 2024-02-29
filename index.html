@@ -38,24 +38,28 @@
             <!-- Open the modal using ID.showModal() method -->
             <!-- <button class="btn" id="my_modal">open modal</button> -->
             <dialog id="my_modal" class="modal">
-            <div class="modal-box">
-                <h3 id="show-hub-name" class="font-bold text-lg">Hello!</h3>
-                <div class="bg-base-200 w-96">
-                    <div class="flex">
-                        <div id="show-hub-detail-contain" class="bg-pink-300 rounded-sm border p-4 flex-1">
-
-                        </div>
-                        <div id="show-img" class="border rounded-sm border-black bg-gray-400 flex-1">
-                           
-                        </div>
-                        </div>
-                        </div>
-
-                <div id="show-hub-detail-contain"></div>
-              
-                <button class="btn bg-pink-900">Close</button>
-            </div>
-            </dialog>
+                <div class="modal-box w-11/12 max-w-5xl">
+                    <h3 id="show-hub-name" class="font-bold text-lg">Hello!</h3>
+                  
+                        <div class="flex items-center gap-4">
+                            <div id="show-hub-detail-contain" class="bg-pink-300 rounded-sm border p-4 flex-1 lg:w-2/6">
+    
+                            </div>
+                            <div id="show-img" class="lg:w-2/6">
+                               
+                            </div>
+                            </div>
+                         
+    
+                    <div id="show-hub-detail-contain"></div>
+                  
+                    <div class="">
+                        <form method="dialog">
+                          <button class="btn btn-success">Close</button>
+                        </form>
+                      </div>
+                </div>
+                </dialog>
         </section>
 
     </main>
