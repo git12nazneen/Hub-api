@@ -76,17 +76,31 @@ const singleHubDetail = (hub) =>{
     hubName.innerText = hub.data.tool_name;
     const showContainer = document.getElementById('show-hub-detail-contain');
     showContainer.innerHTML = `
-    <h1>${hub.data.description}</h1>
-    <h1>HUB id: ${hub.data.id}</h1>
+    <h1 class="font-bold">${hub.data.description}</h1>
+    <h1 class="font-extralight">HUB id: ${hub.data.id}</h1>
+   
+    <div class="flex">
+
+    <div>
     <h2>Features</h2>
     <p>${hub.data.features[1].feature_name}</p>
     <p>${hub.data.features[2].feature_name}</p>
-    <p>${hub.data.features[3].feature_name}</p>
+    <p>${hub.data.features[3].feature_name}</p></div>
+    <div>
     <h2>Integration</h2>
-    <p>${hub.data.pricing[0].price}</p>
-    <p>${hub.data.pricing[1].price}</p>
-    <p>${hub.data.pricing[2].price}</p>
+    <p>${hub.data.integrations[0]}</p>
+    <p>${hub.data.integrations[1]}</p>
+    <p>${hub.data.integrations[2]}</p>
+    </div>
+    </div>
+    </div>
        
+
+    <div class="flex border-spacing-1 border-orange-600 rounded-md p-1  gap-1 text-2xl">
+   <div class="border border-b-orange-600 rounded-md p-5 m-2  text-xl"> <p>${hub.data.pricing[0].price}</p></div>
+   <div class="border border-b-orange-600 rounded-md p-5 m-2 text-xl"><p>${hub.data.pricing[1].price} </p></div>
+   <div class="border border-b-orange-600 rounded-md p-5 m-2 text-xl"><p>${hub.data.pricing[2].price}</p></div>
+    </div>
 
  
  
@@ -94,7 +108,8 @@ const singleHubDetail = (hub) =>{
     `
     const hubImage = document.getElementById('show-img');
     hubImage.innerHTML=`
-    <img src= "${hub.data.image_link[0]}"></img?
+    <div>  <img src= "${hub.data.image_link[0]}"></img></div>
+  
     `
     // modal
     my_modal.showModal();
