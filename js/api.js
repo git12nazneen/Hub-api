@@ -1,26 +1,35 @@
-const loadHub = async () =>{
+const loadHub = async (searchText='gpt', isShowAll) =>{
     const res = await fetch('https://openapi.programming-hero.com/api/ai/tools');
     const data = await res.json()
     // console.log(data.data.tools)
-    const hubs = data.data.tools;
-    displayHub(hubs)
+    const hubs = data.data.tools.filter(item=> item.name.toLowerCase().includes(searchText.toLowerCase()));
+    console.log(hubs)
+   
+    displayHub(hubs, isShowAll)
 }
 
-const displayHub =(hubs) =>{
+const displayHub =(hubs, isShowAll) =>{
     // 1 container
     // console.log(hubs)
     const hubContainer = document.getElementById('main-container')
-    console.log(hubs.length);
+    //  blank dile search input clear hoye jabe 
+    hubContainer.textContent = '';
 
-    // show btn and hidden btn
-    // const showAllbtn = document.getElementById('show-all-container')
-    // if(hubs.length > 6){
-    //     showAllbtn.classList.remove('hidden')
-    // }
-    // else{
-    //     showAllbtn.classList.add('hidden')
-    // }
-    hubs = hubs.slice(0, 6)
+    // console.log(hubs.length);
+
+    // showall btn and hidden btn
+    const showAllbtn = document.getElementById('show-all-container')
+    if(hubs.length > 2 && !isShowAll){
+        showAllbtn.classList.remove('hidden')
+    }
+    else{
+        showAllbtn.classList.add('hidden')
+    }
+   
+    if(!isShowAll){
+        hubs = hubs.slice(0, 3)
+    }
+   
     // 2 create div
     hubs.forEach(hub =>{
         console.log(hub)
@@ -48,7 +57,30 @@ const displayHub =(hubs) =>{
         `;
         hubContainer.appendChild(hubCard);
     })
+    // hide loading spinner
+    loadingSpinner(false)
+}
 
+// handle search button
+const handleSearch =(isShowAll) =>{
+    loadingSpinner(true)
+    const searchField = document.getElementById('search-field');
+    const searchText = searchField.value ;
+    console.log(searchText);
+   loadHub(searchText, isShowAll)
+}
+
+const loadingSpinner =(isLoading) =>{
+    const spinnerLoad = document.getElementById('spinner-loading');
+    if(isLoading){
+        spinnerLoad.classList.remove('hidden')
+    }
+    else{
+        spinnerLoad.classList.add('hidden')
+    }
+}
+const handleShowall = () =>{
+    handleSearch(true)
 }
 
 loadHub()

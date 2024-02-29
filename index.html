@@ -12,12 +12,25 @@
         <h1 class="text-5xl text-center p-8">AI UNIVERSE HUB</h1>
     </header>
     <main class="container mx-auto">
+        <!-- handle -->
+        <!-- search result -->
+        <section class="m-5 bg-blue-300 p-2">
+            <input id="search-field" type="text" placeholder="Search...." class="input input-bordered w-full max-w-xs" />
+            <button onclick="handleSearch()" class="btn btn-neutral">Search</button>
+        </section>
+        <!-- handle end -->
+        <!-- spinner -->
+        <div id="spinner-loading" class="text-center mt-9 hidden">
+            <span class="loading loading-spinner loading-lg"></span>
+        </div>
+        <!-- spinner end -->
+
         <div id="main-container"class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
            
         </div>
-
-        <div id="hidden show-all-container" class=" text-center my-8">
-            <button class="btn btn-active btn-secondary text-center">Show all</button>
+        <!-- handle show all -->
+        <div id="show-all-container" class=" text-center my-8 hidden">
+            <button onclick="handleShowall()" class="btn btn-active btn-secondary text-center">Show all</button>
         </div>
         <!-- modal -->
         <section>
